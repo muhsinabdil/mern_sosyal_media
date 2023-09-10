@@ -33,10 +33,13 @@ const register = async (req, res) => {
 
         const token = jwt.sign({ id: newUser._id }, "Secret_KEY", { expiresIn: '1h' })  //expiresIn zaman verildi
 
+        
 
-
-
-        res.status(201).json({ status: "OK", newUser, token })
+        res.status(201).json({ 
+            status: "OK",
+            newUser,
+            token
+        })
 
     } catch (error) {
 
@@ -60,14 +63,18 @@ const login = async (req, res) => {
 
         if (!passwordCompare) {
 
-            return res.status(500).json({ msg: "Şifre yanlış" })
+            return res.status(500).json({ msg: "Kullanıcı adı veya şifre yanlış" })
         }
 
 
         const token = jwt.sign({ id: user._id }, "Secret_KEY", { expiresIn: '1h' })  //expiresIn zaman verildi
 
 
-        res.status(201).json({ status: "OK", user, token})
+        res.status(200).json({ 
+            status: "OK", 
+            user, 
+            token
+        })
 
 
 
